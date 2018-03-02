@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">VideoWall</string>
+    <string name="action_about">About</string>
+    <string name="alert_title">Attention!</string>
+    <string name="alert_message">Unable to load data. \nCheck your connection!</string>
+    <string name="alert_positive">Close</string>
+    <string name="video">Video</string>
+     <string name="info_text">This is a simple  VideoWall</string>
+    <string name="author">&lt;br /&gt;&lt;br /&gt;Written by Nikhil Joshi</string>
+
+
+    <string name="error_thumbnail_view">There was an error initializing the YouTubeThumbnailView (%1$s)</string>
+    <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
+
+</resources>
