@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.niks.youtube.R;
-import com.niks.youtube.activity.FullscreenDemoActivity;
+import com.niks.youtube.activity.VideoActivity;
 import com.niks.youtube.models.videos.Video;
 import com.squareup.picasso.Picasso;
 
@@ -122,7 +122,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
     private void  startActivity(String videoId)
     {
-        Intent intent = new Intent(mContext,FullscreenDemoActivity.class);
+        Intent intent = new Intent(mContext,VideoActivity.class);
         Log.e("w222","-------"+videoId);
         intent.putExtra("videoId",videoId);
         mContext.startActivity(intent);

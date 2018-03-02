@@ -22,7 +22,7 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static com.niks.youtube.util.DeveloperKey.API_KEY;
 
 
-public class FullscreenDemoActivity extends YouTubeBaseActivity implements
+public class VideoActivity extends YouTubeBaseActivity implements
         View.OnClickListener,
         CompoundButton.OnCheckedChangeListener,
         YouTubePlayer.OnFullscreenListener, YouTubePlayer.OnInitializedListener {
