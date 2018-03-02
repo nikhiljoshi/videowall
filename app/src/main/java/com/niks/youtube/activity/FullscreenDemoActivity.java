@@ -65,7 +65,7 @@ public class FullscreenDemoActivity extends YouTubeBaseActivity implements
         this.mYouTubePlayer = player;
         //  setControlsEnabled();
         // Specify that we want to handle fullscreen behavior ourselves.
-        player.addFullscreenControlFlag(YouTubePlayer.FULLSCREEN_FLAG_CUSTOM_LAYOUT);
+        player.addFullscreenControlFlag(YouTubePlayer.FULLSCREEN_FLAG_ALWAYS_FULLSCREEN_IN_LANDSCAPE);
         player.setOnFullscreenListener(this);
         if (!wasRestored) {
             player.cueVideo(mVideoId);
@@ -84,7 +84,7 @@ public class FullscreenDemoActivity extends YouTubeBaseActivity implements
 
     @Override
     public void onClick(View v) {
-        mYouTubePlayer.setFullscreen(!fullscreen);
+        mYouTubePlayer.setFullscreen(true);
     }
 
     @Override
