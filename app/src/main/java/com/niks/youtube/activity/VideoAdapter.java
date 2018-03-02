@@ -1,6 +1,6 @@
 
 
-package com.niks.youtube.example;
+package com.niks.youtube.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> {
 
-    private ArrayList<Video> videos;
+    private ArrayList<Video> mVideos;
     private int rowLayout;
     private Context mContext;
     //TODO: delete
@@ -28,14 +28,14 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
 
     public VideoAdapter(ArrayList<Video> list, int rowLayout, Context context) {
-        this.videos = list;
+        this.mVideos = list;
         this.rowLayout = rowLayout;
         this.mContext = context;
     }
 
     public void clearData(){
-        if (videos != null)
-            videos.clear();
+        if (mVideos != null)
+            mVideos.clear();
     }
 
     @Override
@@ -47,7 +47,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position)  {
 
-        final Video currentVideo = videos.get(position);
+        final Video currentVideo = mVideos.get(position);
 
         String pubDateString = currentVideo.getDate();
         final String videoTitle = currentVideo.getTitle();
@@ -126,11 +126,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return videos == null ? 0 : videos.size();
+        return mVideos == null ? 0 : mVideos.size();
     }
 
     public ArrayList<Video> getList() {
-        return videos;
+        return mVideos;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

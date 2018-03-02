@@ -1,6 +1,6 @@
 
 
-package com.niks.youtube.example;
+package com.niks.youtube.activity;
 
 import android.content.Intent;
 import android.widget.Toast;
@@ -10,7 +10,7 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.niks.youtube.R;
 
-import static com.niks.youtube.example.MainActivity.API_KEY;
+import static com.niks.youtube.activity.MainActivity.API_KEY;
 
 
 public abstract class YouTubeFailureRecoveryActivity extends YouTubeBaseActivity implements

@@ -1,4 +1,4 @@
-package com.niks.youtube.example;
+package com.niks.youtube.activity;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
