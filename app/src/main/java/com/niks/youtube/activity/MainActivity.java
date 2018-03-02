@@ -20,9 +20,13 @@ import android.widget.Toast;
 
 import com.niks.youtube.Parser;
 import com.niks.youtube.R;
+import com.niks.youtube.adapter.VideoAdapter;
 import com.niks.youtube.models.videos.Video;
 
 import java.util.ArrayList;
+
+import static com.niks.youtube.util.DeveloperKey.API_KEY;
+import static com.niks.youtube.util.DeveloperKey.CHANNEL_ID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,9 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private int totalElement;
     private String nextToken;
-    private final String CHANNEL_ID = "UCVHFbqXqoYvEWM1Ddxl0QDg";
-    //TODO: delete
-    public static final String API_KEY = "AIzaSyAjK4nv8NltIkppUPXfYDuYQoT9jJ5oRyY";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,11 +99,14 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayoutManager layoutManager = LinearLayoutManager.class.cast(recyclerView.getLayoutManager());
                 int lastVisible = layoutManager.findLastVisibleItemPosition();
 
-                if (lastVisible == totalElement - 1)
-                    fab.setVisibility(View.VISIBLE);
-                else
+                if (lastVisible == totalElement - 1) {
                     fab.setVisibility(View.GONE);
+                    loadNewVideos();
 
+                }
+                else {
+                    fab.setVisibility(View.GONE);
+                }
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
@@ -110,35 +115,41 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Parser parser = new Parser();
-                if (nextToken != null) {
-                    String url = parser.generateMoreDataRequest(CHANNEL_ID, 20, Parser.ORDER_DATE, API_KEY, nextToken);
-                    parser.execute(url);
-                    parser.onFinish(new Parser.OnTaskCompleted() {
-                        @Override
-                        public void onTaskCompleted(ArrayList<Video> list, String nextPageToken) {
-
-                            //update the adapter with the new data
-                            vAdapter.getList().addAll(list);
-                            totalElement = vAdapter.getItemCount();
-                            nextToken = nextPageToken;
-                            vAdapter.notifyDataSetChanged();
-                            Toast.makeText(MainActivity.this, "New video added!", Toast.LENGTH_SHORT).show();
-                            fab.setVisibility(View.GONE);
-                            mRecyclerView.scrollBy(0, 1000);
-                        }
-
-                        @Override
-                        public void onError() {
-                            Toast.makeText(MainActivity.this, "Error while loading data. Please retry", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                } else {
-                    Toast.makeText(MainActivity.this, "Unable to load data. Please retry", Toast.LENGTH_SHORT).show();
-                }
+                loadNewVideos();
             }
         });
+    }
+
+
+    private void loadNewVideos()
+    {
+        Parser parser = new Parser();
+        if (nextToken != null) {
+            String url = parser.generateMoreDataRequest(CHANNEL_ID, 20, Parser.ORDER_DATE, API_KEY, nextToken);
+            parser.execute(url);
+            parser.onFinish(new Parser.OnTaskCompleted() {
+                @Override
+                public void onTaskCompleted(ArrayList<Video> list, String nextPageToken) {
+
+                    //update the adapter with the new data
+                    vAdapter.getList().addAll(list);
+                    totalElement = vAdapter.getItemCount();
+                    nextToken = nextPageToken;
+                    vAdapter.notifyDataSetChanged();
+                    //  Toast.makeText(MainActivity.this, "New video added!", Toast.LENGTH_SHORT).show();
+                    fab.setVisibility(View.GONE);
+                    mRecyclerView.scrollBy(0, 1000);
+                }
+
+                @Override
+                public void onError() {
+                    Toast.makeText(MainActivity.this, getString(R.string.error_load), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } else {
+            Toast.makeText(MainActivity.this, getString(R.string.error_load), Toast.LENGTH_SHORT).show();
+        }
     }
 
     public boolean isNetworkAvailable() {

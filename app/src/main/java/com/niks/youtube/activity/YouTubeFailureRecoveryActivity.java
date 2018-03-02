@@ -10,17 +10,17 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.niks.youtube.R;
 
-import static com.niks.youtube.activity.MainActivity.API_KEY;
+import static com.niks.youtube.util.DeveloperKey.API_KEY;
 
 
 public abstract class YouTubeFailureRecoveryActivity extends YouTubeBaseActivity implements
-    YouTubePlayer.OnInitializedListener {
+        YouTubePlayer.OnInitializedListener {
 
   private static final int RECOVERY_DIALOG_REQUEST = 1;
 
   @Override
   public void onInitializationFailure(YouTubePlayer.Provider provider,
-      YouTubeInitializationResult errorReason) {
+                                      YouTubeInitializationResult errorReason) {
     if (errorReason.isUserRecoverableError()) {
       errorReason.getErrorDialog(this, RECOVERY_DIALOG_REQUEST).show();
     } else {

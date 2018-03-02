@@ -1,10 +1,11 @@
 
 
-package com.niks.youtube.activity;
+package com.niks.youtube.adapter;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.niks.youtube.R;
+import com.niks.youtube.activity.FullscreenDemoActivity;
 import com.niks.youtube.models.videos.Video;
 import com.squareup.picasso.Picasso;
 
@@ -101,7 +103,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
                     }
                 });*/
 
-               startActivity();
+                startActivity(videoId);
             }
         });
 
@@ -109,7 +111,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                startActivity();
+                startActivity(videoId);
                 return false;
             }
         });
@@ -118,10 +120,12 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
 
 
-    private void  startActivity()
+    private void  startActivity(String videoId)
     {
-        Intent intent1 = new Intent(mContext,FullscreenDemoActivity.class);
-        mContext.startActivity(intent1);
+        Intent intent = new Intent(mContext,FullscreenDemoActivity.class);
+        Log.e("w222","-------"+videoId);
+        intent.putExtra("videoId",videoId);
+        mContext.startActivity(intent);
     }
 
     @Override
