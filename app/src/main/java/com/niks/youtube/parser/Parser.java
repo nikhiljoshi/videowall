@@ -1,6 +1,6 @@
 
 
-package com.niks.youtube;
+package com.niks.youtube.parser;
 
 import android.os.AsyncTask;
 import android.util.Log;

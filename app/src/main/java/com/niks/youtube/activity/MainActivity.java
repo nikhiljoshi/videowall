@@ -18,10 +18,10 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.niks.youtube.Parser;
 import com.niks.youtube.R;
 import com.niks.youtube.adapter.VideoAdapter;
 import com.niks.youtube.models.videos.Video;
+import com.niks.youtube.parser.Parser;
 
 import java.util.ArrayList;
 
