@@ -103,7 +103,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
                     }
                 });*/
 
-                startActivity(videoId);
+                startVideoActivity(videoId);
             }
         });
 
@@ -111,7 +111,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                startActivity(videoId);
+                startVideoActivity(videoId);
                 return false;
             }
         });
@@ -120,12 +120,22 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
 
 
-    private void  startActivity(String videoId)
+    private void startVideoActivity(String videoId)
     {
         Intent intent = new Intent(mContext,VideoActivity.class);
         Log.e("w222","-------"+videoId);
         intent.putExtra("videoId",videoId);
         mContext.startActivity(intent);
+    }
+
+    private void startShareActivity()
+    {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT,
+                mContext.getString(R.string.shareapp));
+        sendIntent.setType("text/plain");
+        mContext.startActivity(sendIntent);
     }
 
     @Override

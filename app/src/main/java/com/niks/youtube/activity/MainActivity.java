@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
             public void onTaskCompleted(ArrayList<com.niks.youtube.models.videos.Video> list, String nextPageToken) {
                 //list is an ArrayList with all video's item
                 //set the adapter to recycler view
-                vAdapter = new VideoAdapter(list, R.layout.yt_row, MainActivity.this);
+                vAdapter = new VideoAdapter(list, R.layout.youtube_row, MainActivity.this);
                 mRecyclerView.setAdapter(vAdapter);
                 totalElement = vAdapter.getItemCount();
                 nextToken = nextPageToken;
